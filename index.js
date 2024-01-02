@@ -2,31 +2,33 @@ const fs = require("fs");
 const { Screenshots } = require("node-screenshots");
 var robot = require("robotjs");
 
-let capturer = Screenshots.fromPoint(0,0);
+let capturer = Screenshots.fromPoint(0, 0);
 
-const x=380
-const y=68
-const w=500
-const h=655
-const zoom=[37,312]
-const pg=[103,369]
+const x = 380
+const y = 68
+const w = 500
+const h = 655
+const zoom = [196, 505]
+const pg = [265, 559]
 
 setTimeout(() => {
- for (let i = 0; i <  10; i++) {
-    
- 
-    robot.moveMouse(zoom[0],zoom[1])
-    robot.mouseClick()
-    setTimeout(() => {
-        capturer.captureArea(380, 68, 500, 655).then((data) => {
-            console.log(data);
-            fs.writeFileSync(`${capturer.id}.png`, data);
-        robot.moveMouse(pg[0],pg[1])
-        robot.mouseClick()
-    });
-    
-    },300);
- }
+    for (let i = 0; i < 128; i++) {
+        setTimeout(() => {
+
+            robot.moveMouse(zoom[0], zoom[1])
+            robot.mouseClick()
+            setTimeout(() => {
+                capturer.captureArea(x, y, w, h).then((data) => {
+                    console.log(data);
+                    fs.writeFileSync(`./grabs/${i}.png`, data);
+                    robot.moveMouse(pg[0], pg[1])
+                    robot.mouseClick()
+                });
+
+            }, 300);
+        }, 500 * i)
+
+    }
 }, 1500)
 // Asynchronous capture
 

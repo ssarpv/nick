@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "image-to-pdf": "^2.0.0",
     "node-screenshots": "^0.1.9",
     "robotjs": "^0.6.0"
   }
